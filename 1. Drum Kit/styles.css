@@ -1,0 +1,54 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+#app {
+
+    padding: 0;
+    height: 100vh;
+}
+
+.noteList {
+    margin: 0 auto;
+    width: fit-content;
+    vertical-align: middle;
+    padding-top: 20%;
+}
+
+.noteBox {
+    user-select: none;
+    border: 2px double rgb(56, 118, 199);
+    color: rgb(73, 73, 73);
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    margin: 0 5px;
+    text-align: center;
+    border-radius: 2px;
+}
+
+.noteBox:hover {
+    cursor: pointer;
+ }
+
+ .noteBox > div:nth-child(1) {
+    padding-top: 4px;
+    font-size: 32px;
+    font-weight: bold;
+ }
+
+ 
+ .noteBox > div:nth-child(2) {
+    font-size: 14px;
+    font-style: italic;
+    padding-top: 6px;
+ }
+
+ .playing {
+     box-shadow: 0 0 24px orange;
+     background: rgb(238, 238, 238);
+ }
