@@ -1,0 +1,37 @@
+
+#app {
+    width: fit-content;
+    margin: 10vh auto;
+}
+
+.clock {
+    width: 280px;
+    height: 280px;
+    border: 8px solid rgb(163, 163, 163);
+    border-radius: 50%;
+    position: relative;
+}
+
+.hand {
+    position: absolute;
+    top: 140px;
+    height: 4px;
+    left: 10px;
+    width: 130px;
+    background: black;
+    transform-origin: 100%;
+}
+
+.minuteHand {
+    top: 139px;
+    height: 6px;
+    width: 110px;
+    left: 30px;
+}
+
+.hourHand {
+    top: 138px;
+    height: 8px;
+    width: 90px;
+    left: 50px;
+}
