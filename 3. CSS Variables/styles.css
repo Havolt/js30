@@ -1,0 +1,39 @@
+
+:root {
+    --base: #ffc600;
+    --spacing: 20px;
+    --blur: 10px;
+}
+
+
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #193549;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    
+}
+
+.spanner {
+    color: var(--base);
+}
+
+.settings {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.newYork {
+    display: block;
+    margin: 40px auto;
+    padding: var(--spacing);
+    background: var(--base);
+    filter: blur(var(--blur));
+}
