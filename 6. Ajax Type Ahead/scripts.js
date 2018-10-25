@@ -25,10 +25,19 @@ function checkList(word) {
     
     const filterCities = cities.filter((el) => {
         if(el.city.toUpperCase().includes(word.toUpperCase())) {
-            console.log(el.city)
+            return el;
         }
     })
-    console.log(word);
+    makeList(filterCities)
+}
+
+function makeList(arr) {
+    let intervals = 10;
+    if(arr.length < 10) { intervals = arr.length; }
+
+    for(let i = 0; i < intervals; i++) {
+        console.log(arr[i]);
+    }
 }
 
 function eventListeners() {
