@@ -28,16 +28,37 @@ function checkList(word) {
             return el;
         }
     })
-    makeList(filterCities)
+    document.querySelector('.displayList').innerHTML = '';
+    if(word !== '' && word !== ' '){
+        makeList(filterCities)
+    }
 }
 
 function makeList(arr) {
     let intervals = 10;
     if(arr.length < 10) { intervals = arr.length; }
-
     for(let i = 0; i < intervals; i++) {
-        console.log(arr[i]);
+        makeItem(arr[i]);
     }
+}
+
+function makeItem(item) {
+    const dc = document.querySelector('.displayList')
+    
+    const dcBack = document.createElement('div');
+    dcBack.classList.add('listCityBack')
+    const dcCity = document.createElement('div');
+    dcCity.innerHTML = item.city;
+    dcCity.classList.add('listCityName');
+    const dcPop = document.createElement('div');
+    dcPop.innerHTML = item.population;
+    dcPop.classList.add('listCityPop');
+    
+    dc.appendChild(dcBack);
+    dcBack.appendChild(dcCity);
+    dcBack.appendChild(dcPop);
+    
+    //dc.appendChild(dc);
 }
 
 function eventListeners() {
