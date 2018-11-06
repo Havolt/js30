@@ -17,19 +17,19 @@ function defineCanvas(cob) {
 }
 
 function drawToCanvas(x, y, rgb) {
-    console.log(x, y, rgb)
-    ctx.fillStyle=`rgb(${rgb.r},${rgb.g},${rgb.b})`;
-    ctx.fillRect(x, y, 5, 5)
-    // ctx.beginPath();
-    // ctx.moveTo();
-    // ctx.lineTo();
-    // ctx.stroke();
+    ctx.strokeStyle=`rgb(${rgb.r},${rgb.g},${rgb.b})`;
+    ctx.beginPath();
+    ctx.moveTo(cnvInfo.lastPos.x, cnvInfo.lastPos.y);
+    ctx.lineTo(x, y);
+    ctx.stroke();
     cnvInfo.lastPos.x = x;
     cnvInfo.lastPos.y = y;
 }
 
 function evtListeners() {
-    cnvInfo.el.addEventListener('mousedown', () => {
+    cnvInfo.el.addEventListener('mousedown', (e) => {
+        cnvInfo.lastPos.x = e.offsetX;
+        cnvInfo.lastPos.y = e.offsetY;
         const rgb = {
             r: Math.floor(Math.random() * 220),
             g: Math.floor(Math.random() * 220),
@@ -37,7 +37,6 @@ function evtListeners() {
         }
         cnvInfo.el.onmousemove = (evt) => {
             drawToCanvas(evt.offsetX, evt.offsetY, rgb)
-            console.log(evt);
         }
     })
     cnvInfo.el.addEventListener('mouseup', (evt) => {
