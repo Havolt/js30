@@ -1,10 +1,10 @@
 
-const canvasDetails = {
+const cnvInfo = {
     el : document.querySelector('#cnv'),
     width: 800,
     height: 580
 }
-const ctx = canvasDetails.el.getContext('2d');
+const ctx = cnvInfo.el.getContext('2d');
 
 
 
@@ -15,15 +15,24 @@ function defineCanvas(cob) {
     cob.el.style.height = cob.height;
 }
 
-function testDraw(cob) {
-    ctx.fillStyle="black";
-    ctx.fillRect(0, 0, cob.width, cob.height)
-    ctx.fillStyle="white";
-    ctx.font = "30px arial"
-    ctx.fillText('Test Text', 100, 100)
-};
+function drawToCanvas() {
+
+}
+
+function evtListeners() {
+    cnvInfo.el.addEventListener('mousedown', (evt) => {
+        cnvInfo.el.onmousemove = () => {
+            console.log(evt)
+        }
+    })
+    cnvInfo.el.addEventListener('mouseup', (evt) => {
+        cnvInfo.el.onmousemove = null;
+    })
+    
+}
 
 (function initApp(){
-    defineCanvas(canvasDetails);
-    testDraw(canvasDetails)
+    defineCanvas(cnvInfo);
+    
+    evtListeners();
 })()
