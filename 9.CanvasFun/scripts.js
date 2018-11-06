@@ -2,7 +2,8 @@
 const cnvInfo = {
     el : document.querySelector('#cnv'),
     width: 800,
-    height: 580
+    height: 580,
+    lastPos: {x: 0, y: 0}
 }
 const ctx = cnvInfo.el.getContext('2d');
 
@@ -19,7 +20,12 @@ function drawToCanvas(x, y, rgb) {
     console.log(x, y, rgb)
     ctx.fillStyle=`rgb(${rgb.r},${rgb.g},${rgb.b})`;
     ctx.fillRect(x, y, 5, 5)
-    
+    // ctx.beginPath();
+    // ctx.moveTo();
+    // ctx.lineTo();
+    // ctx.stroke();
+    cnvInfo.lastPos.x = x;
+    cnvInfo.lastPos.y = y;
 }
 
 function evtListeners() {
@@ -30,10 +36,14 @@ function evtListeners() {
             b: Math.floor(Math.random() * 220)
         }
         cnvInfo.el.onmousemove = (evt) => {
-            drawToCanvas(evt.clientX, evt.clientY, rgb)
+            drawToCanvas(evt.offsetX, evt.offsetY, rgb)
+            console.log(evt);
         }
     })
     cnvInfo.el.addEventListener('mouseup', (evt) => {
+        cnvInfo.el.onmousemove = null;
+    })
+    cnvInfo.el.addEventListener('mouseout', (evt) => {
         cnvInfo.el.onmousemove = null;
     })
 }
