@@ -53,11 +53,13 @@ function multipleSelect(e) {
         }
 
         if(dir != 0) {
-            
             while( currClick != checkInfo.lastClicked.num) {
+                console.log(document.querySelectorAll('.checker')[currClick]);
+                document.querySelectorAll('.checker')[currClick].checked = checkInfo.lastClicked.checked;
                 currClick += dir;
-                console.log(currClick);
+                //console.log(document.querySelectorAll[currClick].checked);
             }
+            
         }
         
     }
