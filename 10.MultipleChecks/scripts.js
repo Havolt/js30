@@ -7,10 +7,13 @@ function makeCheckboxes () {
         'Don\'t forget to tweet your results'     
     ]
     checkText.map((el) => {
-        console.log(el);
         const newEl = document.createElement('div');
         const newCheck = document.createElement('input');
         newCheck.type="checkbox";
+        newCheck.classList.add('checker')
+        newCheck.addEventListener('click', function(evt) {
+            multipleSelect(evt);
+        })
         const newText = document.createElement('div');
         newText.innerHTML = el;
         newText.classList.add("checkText");
@@ -18,7 +21,13 @@ function makeCheckboxes () {
         document.querySelector('.checkArea').appendChild(newCheck);
         document.querySelector('.checkArea').appendChild(newText);
     })
-    
+}
+
+function multipleSelect(e) {
+    if(e.shiftKey) {
+        console.log(e);
+    }
+   
 }
 
 (function initApp () {
