@@ -6,12 +6,19 @@ const listInfo = {
         'Check a lower item', 'Everything inbetween should also be set to checked', 
         'Try do it without and libraries', 'Just regular JavaScript', 'Good Luck!', 
         'Don\'t forget to tweet your results'     
-    ]
+    ],
+    listData : []
 }
 
 
-function createListData() {
-
+function createListData(lst) {
+    lst.listText.map((el, num) => {
+        const newOb = {};
+        newOb.text = el;
+        newOb.pos = num;
+        newOb.selected = false;
+        lst.listData.push(newOb);
+    })
 }
 
 function evtListners() {
@@ -29,4 +36,5 @@ function evtListners() {
 
 (function initApp() {
     evtListners();
+    createListData(listInfo);
 })()
