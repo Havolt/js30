@@ -7,8 +7,23 @@ const listInfo = {
         'Try do it without and libraries', 'Just regular JavaScript', 'Good Luck!', 
         'Don\'t forget to tweet your results'     
     ],
-    listData : []
+    listData : [],
+    lastClicked: ''
 }
+
+function createList(arr) {
+    arr.map((el) => {
+        console.log(el);
+        const checkContain = document.createElement('div');
+        const checkBox = document.createElement('input');
+        checkBox.type="checkbox";
+        const checkText = document.createElement('div');
+        checkText.innerHTML = el.text;
+        document.querySelector('.checkList').appendChild(checkContain);
+        checkContain.appendChild(checkBox);
+        checkContain.appendChild(checkText);
+    })
+};
 
 
 function createListData(lst) {
@@ -19,7 +34,7 @@ function createListData(lst) {
         newOb.selected = false;
         lst.listData.push(newOb);
     })
-}
+};
 
 function evtListners() {
     document.addEventListener('keydown', (e) => {
@@ -32,9 +47,10 @@ function evtListners() {
             listInfo.shiftDown = false;
         }
     })
-}
+};
 
 (function initApp() {
     evtListners();
     createListData(listInfo);
+    createList(listInfo.listData)
 })()
