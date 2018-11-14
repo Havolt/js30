@@ -12,6 +12,7 @@ const listInfo = {
 }
 
 function createList(arr) {
+    document.querySelector('.checkList').innerHTML = '';
     arr.map((el) => {
         console.log(el);
         const checkContain = document.createElement('div');
@@ -19,6 +20,14 @@ function createList(arr) {
         const checkBox = document.createElement('input');
         checkBox.type="checkbox";
         checkBox.classList.add('checkBox');
+        checkBox.name = el.pos;
+        if(el.selected) {
+            checkBox.checked = true;
+        }
+        checkBox.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleBox(e);
+        })
         const checkText = document.createElement('div');
         checkText.innerHTML = el.text;
         checkText.classList.add('checkText');
@@ -37,6 +46,13 @@ function createListData(lst) {
         newOb.selected = false;
         lst.listData.push(newOb);
     })
+};
+
+function toggleBox(trg) {
+    if(!listInfo.shiftDown) {
+        listInfo.listData[trg.target.name].selected = !listInfo.listData[trg.target.name].selected;
+    }
+    createList(listInfo.listData);
 };
 
 function evtListners() {
