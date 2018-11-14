@@ -15,10 +15,13 @@ function createList(arr) {
     arr.map((el) => {
         console.log(el);
         const checkContain = document.createElement('div');
+        checkContain.classList.add('checkContain');
         const checkBox = document.createElement('input');
         checkBox.type="checkbox";
+        checkBox.classList.add('checkBox');
         const checkText = document.createElement('div');
         checkText.innerHTML = el.text;
+        checkText.classList.add('checkText');
         document.querySelector('.checkList').appendChild(checkContain);
         checkContain.appendChild(checkBox);
         checkContain.appendChild(checkText);
