@@ -2,3 +2,26 @@
 body, html {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.konTitle {
+    font-size: 46px;
+    text-align: center;
+}
+
+.konCodeCon {
+    width: fit-content;
+    margin: 60px auto;
+}
+
+.boldCode {
+    font-weight: bold;
+}
+
+.konSymbolCon {
+    display: inline-block;
+    padding-right: 28px;
+}
+
+.konSymbol {
+    font-size: 38px;
+}
