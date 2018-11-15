@@ -8,13 +8,13 @@ const listInfo = {
         'Don\'t forget to tweet your results'     
     ],
     listData : [],
-    lastClicked: ''
+    lastClicked: '',
+    direction: 1
 }
 
 function createList(arr) {
     document.querySelector('.checkList').innerHTML = '';
     arr.map((el) => {
-        console.log(el);
         const checkContain = document.createElement('div');
         checkContain.classList.add('checkContain');
         const checkBox = document.createElement('input');
@@ -51,6 +51,19 @@ function createListData(lst) {
 function toggleBox(trg) {
     if(!listInfo.shiftDown) {
         listInfo.listData[trg.target.name].selected = !listInfo.listData[trg.target.name].selected;
+        listInfo.lastClicked = parseInt(trg.target.name);
+    }
+    else {
+
+        if(listInfo.lastClicked.length != 0) {
+            if(listInfo.lastClicked < parseInt(trg.target.name)) {
+                lastClicked.direction = 1;
+            } else {
+                lastClicked.direction = -1;
+            }
+        }
+
+        listInfo.lastClicked = '';
     }
     createList(listInfo.listData);
 };
