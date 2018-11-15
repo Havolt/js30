@@ -50,11 +50,10 @@ function createListData(lst) {
 
 function toggleBox(trg) {
     let trgNum = parseInt(trg.target.name);
-    if(!listInfo.shiftDown) {
-        listInfo.listData[trgNum].selected = !listInfo.listData[trgNum].selected;
-        listInfo.lastClicked = parseInt(trgNum);
-    }
-    else {
+
+    
+    if(listInfo.shiftDown && listInfo.lastClicked) {
+        console.log('here?')
         let isSelected = listInfo.listData[listInfo.lastClicked].selected;
         if(listInfo.lastClicked.length != 0) {
             if(listInfo.lastClicked > trgNum) {
@@ -68,8 +67,12 @@ function toggleBox(trg) {
             }
 
         }
-        listInfo.lastClicked = '';
+        
     }
+    else {
+        listInfo.listData[trgNum].selected = !listInfo.listData[trgNum].selected;
+    }
+    listInfo.lastClicked = trgNum;
     createList(listInfo.listData);
 };
 
