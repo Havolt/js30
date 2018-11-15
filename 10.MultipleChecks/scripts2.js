@@ -49,20 +49,25 @@ function createListData(lst) {
 };
 
 function toggleBox(trg) {
+    let trgNum = parseInt(trg.target.name);
     if(!listInfo.shiftDown) {
-        listInfo.listData[trg.target.name].selected = !listInfo.listData[trg.target.name].selected;
-        listInfo.lastClicked = parseInt(trg.target.name);
+        listInfo.listData[trgNum].selected = !listInfo.listData[trgNum].selected;
+        listInfo.lastClicked = parseInt(trgNum);
     }
     else {
-
+        let isSelected = listInfo.listData[listInfo.lastClicked].selected;
         if(listInfo.lastClicked.length != 0) {
-            if(listInfo.lastClicked < parseInt(trg.target.name)) {
-                lastClicked.direction = 1;
+            if(listInfo.lastClicked > trgNum) {
+                listInfo.direction = 1;
             } else {
-                lastClicked.direction = -1;
+                listInfo.direction = -1;
             }
-        }
+            while(trgNum != listInfo.lastClicked) {
+                listInfo.listData[trgNum].selected = isSelected;
+                trgNum += listInfo.direction;
+            }
 
+        }
         listInfo.lastClicked = '';
     }
     createList(listInfo.listData);
