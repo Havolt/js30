@@ -19,11 +19,9 @@ function keyCheck(e) {
     
     fillCharacters();
 
-    
 }
 
 function fillCharacters() {
-    console.log(userInput);
     const els = document.querySelectorAll('.konSymbolEmpty');
 
     els.forEach((el, ind) => {
@@ -33,6 +31,12 @@ function fillCharacters() {
             el.classList.remove('konSymbol');
         }
     });
+
+    winState();
+}
+
+function winState() {
+    
 }
 
 (function initApp() {

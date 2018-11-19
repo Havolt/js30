@@ -29,7 +29,19 @@ body, html {
     font-size: 38px;
 }
 
-
 .konSymbol {
     color: black;
+}
+
+@keyframes moveTitle {
+    0% {transform: rotateY(20deg);}
+    50% {transform: rotateY(-20deg);}
+    100% {transform: rotateY(20deg);}
+}
+
+.winTitle {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    animation: moveTitle 2s infinite;
 }
