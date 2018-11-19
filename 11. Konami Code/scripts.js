@@ -17,14 +17,22 @@ function keyCheck(e) {
         }
     }
     
-    if(arrOkay) {
-        fillCharacters();
-    }
+    fillCharacters();
+
     
 }
 
 function fillCharacters() {
     console.log(userInput);
+    const els = document.querySelectorAll('.konSymbolEmpty');
+
+    els.forEach((el, ind) => {
+        if(userInput[ind]) {
+            el.classList.add('konSymbol');
+        }else {
+            el.classList.remove('konSymbol');
+        }
+    });
 }
 
 (function initApp() {
