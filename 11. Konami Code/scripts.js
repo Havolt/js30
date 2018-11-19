@@ -32,15 +32,26 @@ function fillCharacters() {
         }
     });
 
-    winState();
+    if(userInput.length == konamiCode.length) {
+        winState();
+    }
+}
+
+function resetGame() {
+    document.querySelector('.winSec').classList.toggle('hidden');
+    userInput = [];
+    fillCharacters();
 }
 
 function winState() {
-    
+    document.querySelector('.winSec').classList.toggle('hidden');
 }
 
 (function initApp() {
     document.addEventListener('keyup', (e) => {
-        keyCheck(e);
+        if(konamiCode.length != userInput.length){
+            keyCheck(e);
+        }
     })
+    document.querySelector('.winButton').addEventListener('click', resetGame);
 })()

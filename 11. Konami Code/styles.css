@@ -39,9 +39,32 @@ body, html {
     100% {transform: rotateY(20deg);}
 }
 
+.winSec {
+    text-align: center;
+}
+
 .winTitle {
     font-size: 50px;
     font-weight: bold;
-    text-align: center;
     animation: moveTitle 2s infinite;
+}
+
+.winButton {
+    background: rgb(0, 132, 255);
+    color: white;
+    border: 1px solid rgb(0, 132, 255);
+    font-size: 32px;
+    border-radius: 5px;
+    padding: 2px;
+    margin: 16px auto;
+}
+
+.winButton:hover {
+    cursor: pointer;
+    background: rgb(1, 91, 175);
+    border: 1px solid rgb(1, 91, 175);
+}
+
+.hidden {
+    display: none;
 }
