@@ -5,6 +5,8 @@ const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'N
 
 const bandsCopy = [];
 
+
+//sorts names and calls all other functions
 function sortNames(arr, arrCopy) {
     arr.map((el, ind) => {
         if(ind == 0 ) {
@@ -17,6 +19,7 @@ function sortNames(arr, arrCopy) {
     //console.log(bandsCopy);
 }
 
+//removes article from word and returns word
 function removeArticle(el) {
     const articles = ['the ', 'a ', 'an ']
     el = el.split('');
@@ -37,16 +40,14 @@ function removeArticle(el) {
 }
 
 
-
+//finds the correct location for element and places in in array
 function findAndPlaceEl(arr, el, realEl) {
-   // console.log(arr, el)
+ 
    let breakOut = false;
     for(let i = 0; i < arr.length; i++) {
         //Gets array item without article
         let tmpArrEl = removeArticle(arr[i]);
-        //console.log(el);
         for(let j = 0; j < el.length; j++) {
-            //console.log(j)
             if(tmpArrEl[j]) {
                 const elLoc = getLowestCharCode(tmpArrEl[j], el[j]);
                 if(elLoc == -1) {
@@ -68,22 +69,30 @@ function findAndPlaceEl(arr, el, realEl) {
     }
 }
 
+//looks at the charcodes of both letters and returns -1 for lower 0 for equal and 1 for higher
 function getLowestCharCode(curr, newest) {
     //console.log(curr, newest)
     if(newest.toLowerCase().charCodeAt(0) < curr.toLowerCase().charCodeAt(0)) {
-        console.log('its lower')
         return -1;
     }
     else if(newest.toLowerCase().charCodeAt(0) == curr.toLowerCase().charCodeAt(0)) {
-        console.log('its the same')
         return 0;
     } else {
-        console.log('it\'s higher')
         return 1;
     }
-    // tmpArrEl.toLowerCase().charCodeAt(i)
 }
 
+//write names to html
+function writeNames(arr) {
+    arr.map((el) => {
+        const newEl = document.createElement('div');
+        newEl.innerHTML = el;
+        document.querySelector('.bandList').appendChild(newEl);
+    })
+}
+
+//master function called on startup
 (function initApp() {
     sortNames(bands, bandsCopy);
+    writeNames(bandsCopy);
 })();
