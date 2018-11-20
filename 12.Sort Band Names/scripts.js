@@ -5,13 +5,13 @@ const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'N
 
 const bandsCopy = [];
 
-function sortNames(arr) {
-    bands.map((el, ind) => {
+function sortNames(arr, arrCopy) {
+    arr.map((el, ind) => {
         if(ind == 0 ) {
-            bandsCopy.push(el);
+            arrCopy.push(el);
         } else {
             let tmpEl = removeArticle(el)
-            findAndPlaceEl(bandsCopy, tmpEl, el);
+            findAndPlaceEl(arrCopy, tmpEl, el);
         }
     })
     //console.log(bandsCopy);
@@ -40,6 +40,7 @@ function removeArticle(el) {
 
 function findAndPlaceEl(arr, el, realEl) {
    // console.log(arr, el)
+   let breakOut = false;
     for(let i = 0; i < arr.length; i++) {
         //Gets array item without article
         let tmpArrEl = removeArticle(arr[i]);
@@ -47,8 +48,22 @@ function findAndPlaceEl(arr, el, realEl) {
         for(let j = 0; j < el.length; j++) {
             //console.log(j)
             if(tmpArrEl[j]) {
-                getLowestCharCode(tmpArrEl[j], el[j]);
+                const elLoc = getLowestCharCode(tmpArrEl[j], el[j]);
+                if(elLoc == -1) {
+                    arr.splice(i, 0, realEl);
+                    breakOut = true;
+                    break;
+                } else if(elLoc == 1) {
+                    break;
+                }
             } 
+        }
+        if(i == arr.length-1) {
+            arr.push(realEl);
+            break;
+        }
+        if(breakOut) {
+            break;
         }
     }
 }
@@ -57,15 +72,18 @@ function getLowestCharCode(curr, newest) {
     //console.log(curr, newest)
     if(newest.toLowerCase().charCodeAt(0) < curr.toLowerCase().charCodeAt(0)) {
         console.log('its lower')
+        return -1;
     }
     else if(newest.toLowerCase().charCodeAt(0) == curr.toLowerCase().charCodeAt(0)) {
         console.log('its the same')
+        return 0;
     } else {
         console.log('it\'s higher')
+        return 1;
     }
     // tmpArrEl.toLowerCase().charCodeAt(i)
 }
 
 (function initApp() {
-    sortNames(bands);
+    sortNames(bands, bandsCopy);
 })();
