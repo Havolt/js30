@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f7f7;
+}
+
+.bandListCon {
+    background: #fff;
+    padding: 30px 50px;
+    width: fit-content;
+    font-size: 24px;
+    margin: 20px auto;
+    border-radius: 4px;
+}
+
+.bandTitle{
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 24px;
+}
+
+
+.bandList > div {
+    border-bottom: 1px solid rgb(226, 226, 226);
+    text-align: center;
+    padding-bottom: 5px;
+}
+
