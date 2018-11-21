@@ -46,7 +46,7 @@ html {
     top: 0;
     width: 100%;
     transition: all 0.5s;
-    position: relative;
+    
     z-index: 1;
   }
   
@@ -85,5 +85,15 @@ html {
     color: white;
     transition: all 0.2s;
     text-transform: uppercase;
+  }
+
+  .relativeNav {
+    position: relative;
+  }
+
+  .fixedNav {
+    position: fixed;
+    top: 0;
+    left: 0;
   }
   
