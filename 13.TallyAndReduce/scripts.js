@@ -11,7 +11,22 @@ function compileArray(arr, pushArr) {
 function convertToNums(arr){
     console.log(arr);
     arr.map((el, ind) => {
-        console.log(el, ind)
+        let tmpEl = [];
+        let splitEl = el.split('');
+        let tmpAdd = '';
+        for(let i = 0; i < splitEl.length; i++) {
+            if(i == splitEl.length -1) {
+                tmpAdd += splitEl[i];
+                tmpEl.push(tmpAdd);
+                tmpAdd = '';
+            } else if (splitEl[i] == ':') {
+                tmpEl.push(tmpAdd);
+                tmpAdd = '';
+            } else {
+                tmpAdd += splitEl[i];
+            }
+        }
+        console.log(tmpEl);
     })
 };
 
