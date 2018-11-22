@@ -32,6 +32,10 @@ function scrollItems(prevM, currM) {
         mouseIsDown = false;
         prevMouseX = 0;
     })
+    items.addEventListener('mouseleave', (e) => {
+        mouseIsDown = false;
+        prevMouseX = 0;
+    })
     items.addEventListener('mousemove', (e) => {
         if(mouseIsDown) {
             if(prevMouseX) {
