@@ -10,21 +10,26 @@ const molesPos = [0, 0, 0, 0, 0, 0];
 function startGame() {
     gameInProgress = true;
     gameTimer = 10;
+    gameEngine();
     setTimeout(() => {
-        gameEngine();
+        countDown();
     }, 1000)
     popUp(molesPos);
 }
 
 function gameEngine() {
-    countDown();
-    if(gameTimer > 0) {
-        setTimeout(() => {
-            gameEngine();
-        }, 1000)
-    } else {
-        gameInProgress = false;
-    }
+    showMoles(molesPos);
+    setTimeout(() => {
+        gameEngine();
+    }, 1000 / 100)
+}
+
+function showMoles(arr) {
+    molesPos.map((el, ind) => {
+        if(el == 1) {
+            holes[ind].classList.add('up');
+        }
+    })
 }
 
 function popUp(arr) {
@@ -42,6 +47,13 @@ function popUp(arr) {
 function countDown() {
     gameTimer -= 1;
     if(gameTimer == 0) {
+        gameInProgress = false;
+    }
+    if(gameTimer > 0) {
+        setTimeout(() => {
+            countDown();
+        }, 1000)
+    } else {
         gameInProgress = false;
     }
 }
