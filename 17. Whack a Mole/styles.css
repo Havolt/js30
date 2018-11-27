@@ -7,11 +7,28 @@ html {
   *, *:before, *:after {
     box-sizing: inherit;
   }
+
+  button {
+      margin: 16px auto 0 auto;
+      background: rgb(196, 49, 49);
+      font-size: 38px;
+      color: white;
+      border: 1px solid rgb(221, 201, 201);
+      border-radius: 5px;
+      padding: 4px 8px;
+      outline: none;
+  }
+
+  button:hover {
+      cursor: pointer;
+      background: rgb(136, 34, 34);
+  }
   
   body {
     padding: 0;
     margin: 0;
     font-family: 'Amatic SC', cursive;
+    text-align: center;
   }
   
   h1 {
@@ -67,4 +84,13 @@ html {
   .hole.up .mole {
     top: 0;
   }
+
+  .buttonDeactivate {
+      opacity: 0.5;
+  }
+
+  .buttonDeactivate:hover {
+    cursor: default;
+    background: rgb(196, 49, 49);
+}
   

@@ -9,13 +9,19 @@ let score = 0;
 const molesPos = [0, 0, 0, 0, 0, 0];
 
 function startGame() {
-    gameInProgress = true;
-    gameTimer = 10;
-    gameEngine();
-    setTimeout(() => {
-        countDown();
-    }, 1000)
-    popUp(molesPos);
+    if(!gameInProgress) {
+        document.querySelector('.startButton').innerHTML = 'Playing..'
+        document.querySelector('.startButton').classList.add('buttonDeactivate');
+        score = 0;
+        scoreBoard.innerHTML = score;
+        gameInProgress = true;
+        gameTimer = 10;
+        gameEngine();
+        setTimeout(() => {
+            countDown();
+        }, 1000)
+        popUp(molesPos);
+    }
 };
 
 function gameEngine() {
@@ -54,7 +60,6 @@ function popUp(arr) {
             molesPos[availPos[rndNum]] = 0;
         }
     }, rndEnd)
-    console.log(rndTime)
     if(gameInProgress) {
         setTimeout(() => {
             popUp();
@@ -64,15 +69,11 @@ function popUp(arr) {
 
 function countDown() {
     gameTimer -= 1;
-    if(gameTimer == 0) {
-        gameInProgress = false;
-    }
     if(gameTimer > 0) {
         setTimeout(() => {
             countDown();
         }, 1000)
     } else {
-        gameInProgress = false;
         endGame(molesPos);
     }
 };
@@ -80,7 +81,6 @@ function countDown() {
 function hitMole(e) {
     if(e.target.classList[0] == 'mole') {
         const moleNum = parseInt(e.target.parentElement.classList[1].split('').splice(4).join()) - 1;
-        console.log(moleNum)
         molesPos[moleNum] = 0;
         score++;
         scoreBoard.innerHTML = score;
@@ -89,10 +89,12 @@ function hitMole(e) {
 }
 
 function endGame(arr) {
-    arr.map((el) => {
-        el = 0;
-    })
+    for(let i = 0; i < arr.length; i++) {
+        arr[i] = 0;
+    }
     showMoles()
+    gameInProgress = false;
+    document.querySelector('.startButton').innerHTML = 'Start!';
 }
 
 function evtLstn () {
@@ -104,6 +106,5 @@ function evtLstn () {
 };
 
 (function initApp() {
-    console.log(moles);
     evtLstn();
 })()
