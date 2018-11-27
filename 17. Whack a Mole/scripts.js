@@ -4,6 +4,7 @@ const moles = document.querySelectorAll('.mole');
 
 let gameTimer = 0;
 let gameInProgress = false;
+let score = 0;
 
 const molesPos = [0, 0, 0, 0, 0, 0];
 
@@ -29,6 +30,9 @@ function showMoles(arr) {
         if(el == 1) {
             holes[ind].classList.add('up');
         }
+        else {
+            holes[ind].classList.remove('up');
+        }
     })
 };
 
@@ -41,7 +45,7 @@ function popUp(arr) {
     });
     const rndNum = Math.floor(Math.random() * availPos.length);
     molesPos[availPos[rndNum]] = 1;
-    const rndTime = ((Math.ceil(Math.random() * 10)) * 150);
+    const rndTime = ((Math.ceil(Math.random() * 10)) * 180);
     console.log(rndTime)
     setTimeout(() => {
         popUp();
@@ -63,8 +67,14 @@ function countDown() {
 };
 
 function hitMole(e) {
-    const moleNum = parseInt(e.target.classList[1].split('').splice(4).join()) - 1;
-    console.log(moleNum)
+    if(e.target.classList[0] == 'mole') {
+        const moleNum = parseInt(e.target.parentElement.classList[1].split('').splice(4).join()) - 1;
+        console.log(moleNum)
+        molesPos[moleNum] = 0;
+        score++;
+        scoreBoard.innerHTML = score;
+    }
+    
 }
 
 function evtLstn () {
