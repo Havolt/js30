@@ -15,14 +15,14 @@ function startGame() {
         countDown();
     }, 1000)
     popUp(molesPos);
-}
+};
 
 function gameEngine() {
     showMoles(molesPos);
     setTimeout(() => {
         gameEngine();
     }, 1000 / 100)
-}
+};
 
 function showMoles(arr) {
     molesPos.map((el, ind) => {
@@ -30,7 +30,7 @@ function showMoles(arr) {
             holes[ind].classList.add('up');
         }
     })
-}
+};
 
 function popUp(arr) {
     const availPos = []
@@ -40,9 +40,13 @@ function popUp(arr) {
         }
     });
     const rndNum = Math.floor(Math.random() * availPos.length);
-    console.log(availPos);
     molesPos[availPos[rndNum]] = 1;
-}
+    const rndTime = ((Math.ceil(Math.random() * 10)) * 150);
+    console.log(rndTime)
+    setTimeout(() => {
+        popUp();
+    }, rndTime)
+};
 
 function countDown() {
     gameTimer -= 1;
@@ -56,8 +60,22 @@ function countDown() {
     } else {
         gameInProgress = false;
     }
+};
+
+function hitMole(e) {
+    const moleNum = parseInt(e.target.classList[1].split('').splice(4).join()) - 1;
+    console.log(moleNum)
 }
+
+function evtLstn () {
+    holes.forEach((el) => {
+        el.addEventListener('click', (e) => {
+            hitMole(e);
+        })
+    })
+};
 
 (function initApp() {
     console.log(moles);
+    evtLstn();
 })()
