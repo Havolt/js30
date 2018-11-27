@@ -20,12 +20,14 @@ function startGame() {
 
 function gameEngine() {
     showMoles(molesPos);
-    setTimeout(() => {
-        gameEngine();
-    }, 1000 / 100)
+    if(gameInProgress){
+        setTimeout(() => {
+            gameEngine();
+        }, 1000 / 100)
+    }
 };
 
-function showMoles(arr) {
+function showMoles() {
     molesPos.map((el, ind) => {
         if(el == 1) {
             holes[ind].classList.add('up');
@@ -46,10 +48,18 @@ function popUp(arr) {
     const rndNum = Math.floor(Math.random() * availPos.length);
     molesPos[availPos[rndNum]] = 1;
     const rndTime = ((Math.ceil(Math.random() * 10)) * 180);
-    console.log(rndTime)
+    const rndEnd = (((Math.ceil(Math.random() * 10)) * 100) + 220);
     setTimeout(() => {
-        popUp();
-    }, rndTime)
+        if(molesPos[availPos[rndNum]] == 1) {
+            molesPos[availPos[rndNum]] = 0;
+        }
+    }, rndEnd)
+    console.log(rndTime)
+    if(gameInProgress) {
+        setTimeout(() => {
+            popUp();
+        }, rndTime)
+    };
 };
 
 function countDown() {
@@ -63,6 +73,7 @@ function countDown() {
         }, 1000)
     } else {
         gameInProgress = false;
+        endGame(molesPos);
     }
 };
 
@@ -75,6 +86,13 @@ function hitMole(e) {
         scoreBoard.innerHTML = score;
     }
     
+}
+
+function endGame(arr) {
+    arr.map((el) => {
+        el = 0;
+    })
+    showMoles()
 }
 
 function evtLstn () {
