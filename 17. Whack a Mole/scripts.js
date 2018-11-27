@@ -28,7 +28,15 @@ function gameEngine() {
 }
 
 function popUp(arr) {
-
+    const availPos = []
+    molesPos.map((el, ind) => {
+        if(el == 0) {
+            availPos.push(ind);
+        }
+    });
+    const rndNum = Math.floor(Math.random() * availPos.length);
+    console.log(availPos);
+    molesPos[availPos[rndNum]] = 1;
 }
 
 function countDown() {
